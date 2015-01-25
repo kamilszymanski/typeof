@@ -15,10 +15,14 @@ public class Then<S> {
 	}
 
 	public <T> ThenIs<S, T> is(Class<T> type) {
-		return new ThenIs<>(this, object, type);
+		return new ThenIs<>(this, type);
 	}
 
 	public void orElse(Consumer<S> orElseBlock) {
 		orElseBlock.accept(object);
+	}
+
+	S unwrap() {
+		return object;
 	}
 }

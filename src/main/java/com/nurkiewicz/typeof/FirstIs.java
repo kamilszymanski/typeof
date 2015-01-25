@@ -5,12 +5,10 @@ import java.util.function.Function;
 
 public class FirstIs<S, T> {
 
-	final Then<S> parent;
 	private final S object;
 	private final Class<T> expectedType;
 
-	FirstIs(Then<S> parent, S object, Class<T> expectedType) {
-		this.parent = parent;
+	FirstIs(S object, Class<T> expectedType) {
 		this.object = object;
 		this.expectedType = expectedType;
 	}
@@ -20,7 +18,7 @@ public class FirstIs<S, T> {
 			thenBlock.accept(castObject());
 			return new TerminalThen<>();
 		}
-		return parent;
+		return new Then<>(object);
 	}
 
 	public <R> ThenReturn<S, R> thenReturn(Function<T, R> result) {

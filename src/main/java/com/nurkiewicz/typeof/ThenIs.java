@@ -9,12 +9,10 @@ import java.util.function.Consumer;
 public class ThenIs<S, T> {
 
 	final Then<S> parent;
-	private final S object;
 	private final Class<T> expectedType;
 
-	ThenIs(Then<S> parent, S object, Class<T> expectedType) {
+	ThenIs(Then<S> parent, Class<T> expectedType) {
 		this.parent = parent;
-		this.object = object;
 		this.expectedType = expectedType;
 	}
 
@@ -27,10 +25,11 @@ public class ThenIs<S, T> {
 	}
 
 	private T castObject() {
-		return (T) object;
+		return (T) parent.unwrap();
 	}
 
 	private boolean matchingType() {
+		S object = parent.unwrap();
 		return object != null && expectedType.isAssignableFrom(object.getClass());
 	}
 }

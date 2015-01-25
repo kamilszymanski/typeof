@@ -14,7 +14,7 @@ public class TerminalThen<S> extends Then<S> {
 
 	@Override
 	public <T> ThenIs<S, T> is(Class<T> type) {
-		return new TerminalThenIs<>(this, null, null);
+		return new TerminalThenIs<>(this, null);
 	}
 
 	@Override
